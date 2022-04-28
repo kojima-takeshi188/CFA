@@ -2,7 +2,7 @@
 
 This is the official implementation of `Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment` (IJCAI-ECAI2022, Short).
 
-The paper is available at [IJCAI-ECAI2022](https://test) (main only) and [arXiv](https://test) (main and appendix).
+The paper is available at [IJCAI-ECAI2022](https://TBD) (main only) and [arXiv](https://TBD) (main and appendix).
 
 ## Installation
 
@@ -27,6 +27,7 @@ pip install timm==0.4.9
 ```
 pip install git+https://github.com/rwightman/pytorch-image-models@more_datasets # 0.5.0
 ```
+
 ### The other libraries
 ```
 pip install -r requirements.txt
@@ -47,23 +48,35 @@ datasets/imagenet2012/val
 datasets/imagenet2012/val_c
 ```
 
-## Argument Setting
+## Quick start
+
+### Argument Setting
 ```
 model={'ViT-B_16', 'ViT-L_16', 'ViT_AugReg-B_16', 'ViT_AugReg-L_16', 'resnet50', 'resnet101', 'mlpmixer_B16', 'mlpmixer_L16', 'DeiT-B', 'DeiT-S', 'Beit-B16_224', 'Beit-L16_224', 'Beit-L16_512'}
 loss_function={'cfa', 't3a', 'shot-im', 'tent', 'pl'}
 ```
 
-## 1st Phase : Fine-Tuning (Skip)
+### 1st Phase : Fine-Tuning (Skip)
 In this implementation, we use models that are already fine-tuned on ImageNet-2012 dataset.
 Our method does not need to alter training phase, i.e., does not need to retrain models from scratch.
 Therefore, we can skip fine-tuning phase.
 
-## 2nd Phase : Calculation of distribution statistics on source dataset
+### 2nd Phase : Calculation of distribution statistics on source dataset
 ```
 python main.py --calc_statistics_flag --model=${model} --loss_function=${loss_function}
 ```
 
-## 3rd Phase : Test-Time Adaptation (TTA) on target dataset
+### 3rd Phase : Test-Time Adaptation (TTA) on target dataset
 ```
 python main.py --tta_flag --model=${model} --loss_function=${loss_function}
 ```
+
+## Citation
+```
+@inproceedings{
+TBD
+}
+```
+
+## Contact
+- t.kojima@weblab.t.u-tokyo.ac.jp
