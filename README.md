@@ -33,7 +33,7 @@ pip install git+https://github.com/rwightman/pytorch-image-models@more_datasets 
 pip install -r requirements.txt
 ```
 
-## Dataset Preparation
+## Dataset
 
 Download each datasets and unzip them under the following directory.
 
@@ -50,23 +50,23 @@ datasets/imagenet2012/val_c
 
 ## Quick start
 
-### Argument Setting
+#### (1) Argument Setting
 ```
 model={'ViT-B_16', 'ViT-L_16', 'ViT_AugReg-B_16', 'ViT_AugReg-L_16', 'resnet50', 'resnet101', 'mlpmixer_B16', 'mlpmixer_L16', 'DeiT-B', 'DeiT-S', 'Beit-B16_224', 'Beit-L16_224', 'Beit-L16_512'}
 loss_function={'cfa', 't3a', 'shot-im', 'tent', 'pl'}
 ```
 
-### 1st Phase : Fine-Tuning (Skip)
+#### (2) Fine-Tuning (Skip)
 In this implementation, we use models that are already fine-tuned on ImageNet-2012 dataset.
 Our method does not need to alter training phase, i.e., does not need to retrain models from scratch.
 Therefore, we can skip fine-tuning phase.
 
-### 2nd Phase : Calculation of distribution statistics on source dataset
+#### (3) Calculation of distribution statistics on source dataset
 ```
 python main.py --calc_statistics_flag --model=${model} --loss_function=${loss_function}
 ```
 
-### 3rd Phase : Test-Time Adaptation (TTA) on target dataset
+#### (4) Test-Time Adaptation (TTA) on target dataset
 ```
 python main.py --tta_flag --model=${model} --loss_function=${loss_function}
 ```
