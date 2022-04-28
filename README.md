@@ -27,6 +27,18 @@ pip install -r requirements.txt
 
 ## Dataset Preparation
 
+Download each datasets and unzip them under the following directory.
+
+- ImageNet-2012 (as Source)
+datasets/imagenet2012/train
+datasets/imagenet2012/val
+
+- ImageNet-C (as Target)
+datasets/imagenet2012/val_c
+
+- ImageNet-Sketch (as Target)
+datasets/imagenet2012/val_sketch
+
 ## Argument Setting
 ```
 model=
