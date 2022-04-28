@@ -2,15 +2,17 @@
 
 This is the official implementation of `Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment` (IJCAI-ECAI2022, Short).
 
-[IJCAI-ECAI2022 version](https://test) (main only), [arXiv version](https://test) (main and appendix)
+The paper is available at [IJCAI-ECAI2022](https://test) (main only) and [arXiv](https://test) (main and appendix).
 
 ## Installation
 
-### Prerequisite (Hardware)
+### Prerequisite
+
+#### Hardware
 - GPU : A100 x 1GPU (40 GB Memory)
 - Disk Space : About 300 GB
 
-### Prerequisite (Software)
+#### Software
 - Python==3.8
 - torch==1.9.0
 - torchvision==0.10.0
