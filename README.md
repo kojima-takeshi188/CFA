@@ -4,7 +4,11 @@ This is the official implementation of `Robustifying Vision Transformer without 
 
 ## Installation
 
-### Prerequisite
+### Prerequisite (Hardware)
+- GPU : A100 x 1GPU (40 GB Memory)
+- Disk Space : About 300 GB
+
+### Prerequisite (Software)
 - Python==3.8
 - torch==1.9.0
 - torchvision==0.10.0
@@ -15,7 +19,7 @@ This is the official implementation of `Robustifying Vision Transformer without 
 pip install timm==0.4.9
 ```
 
-- For the other models (ViT-AugReg, DeiT, MLP-Mixer, BeiT, ResNet)
+- For the other models (ViT-AugReg, DeiT, MLP-Mixer, BeiT)
 ```
 pip install git+https://github.com/rwightman/pytorch-image-models@more_datasets # 0.5.0
 ```
@@ -51,9 +55,17 @@ model=
 dataset=
 ```
 
-## 1st Phase : Calculating distribution statistics on source dataset
+## 1st Phase : Fine-Tuning (Skip)
+In this implementation, we use models that are already fine-tuned on ImageNet-2012 dataset.
+Our method does not need to alter training phase, i.e., does not need to retrain models from scratch.
+Therefore, we can skip fine-tuning phase.
 
-## 2nd Phase : Test-Time Adaptation by CFA
+## 2nd Phase : Calculation of distribution statistics on source dataset
+```
+python main.py 
+```
+
+## 3rd Phase : Test-Time Adaptation (TTA) by CFA
 ```
 python main.py 
 ```
