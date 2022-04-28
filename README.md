@@ -2,7 +2,7 @@
 
 This is the official implementation of `Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment` (IJCAI-ECAI2022, Short).
 
-The paper is available at [IJCAI-ECAI2022](https://TBD) (main only) and [arXiv](https://TBD) (main and appendix).
+The paper WILL BE available at [IJCAI-ECAI2022](https://TBD) (main only) and [arXiv](https://TBD) (main and appendix).
 
 ## Installation
 
