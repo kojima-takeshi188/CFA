@@ -9,12 +9,7 @@ This is the official implementation of `Robustifying Vision Transformer without 
 - torch==1.9.0
 - torchvision==0.10.0
 
-### 
-```
-pip install -r requirements.txt
-```
-
-### timm
+### timm library
 - For ViT
 ```
 pip install timm==0.4.9
@@ -23,6 +18,11 @@ pip install timm==0.4.9
 - For the other models (ViT-AugReg, DeiT, MLP-Mixer, BeiT, ResNet)
 ```
 pip install git+https://github.com/rwightman/pytorch-image-models@more_datasets # 0.5.0
+```
+
+### The others
+```
+pip install -r requirements.txt
 ```
 
 ## Dataset Preparation
