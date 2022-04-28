@@ -44,15 +44,10 @@ datasets/imagenet2012/val
 datasets/imagenet2012/val_c
 ```
 
-- ImageNet-Sketch (as Target)
-```
-datasets/imagenet2012/val_sketch
-```
-
 ## Argument Setting
 ```
-model=
-dataset=
+model={'ViT-B_16', 'ViT-L_16', 'ViT_AugReg-B_16', 'ViT_AugReg-L_16', 'resnet50', 'resnet101', 'mlpmixer_B16', 'mlpmixer_L16', 'DeiT-B', 'DeiT-S', 'Beit-B16_224', 'Beit-L16_224', 'Beit-L16_512'}
+loss_function={'cfa', 't3a', 'shot-im', 'tent', 'pl'}
 ```
 
 ## 1st Phase : Fine-Tuning (Skip)
@@ -65,7 +60,7 @@ Therefore, we can skip fine-tuning phase.
 python main.py 
 ```
 
-## 3rd Phase : Test-Time Adaptation (TTA) by CFA
+## 3rd Phase : Test-Time Adaptation (TTA)
 ```
 python main.py 
 ```
