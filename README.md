@@ -1,5 +1,7 @@
 # Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment
 
+This is the official implementation of `Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment` (IJCAI-ECAI2022, Short).
+
 ## Installation
 
 ### Prerequisite
