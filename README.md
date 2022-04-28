@@ -39,13 +39,13 @@ Download each datasets and unzip them under the following directory.
 
 - [ImageNet-2012](https://image-net.org/index.php) (as Source)
 ```
-datasets/imagenet2012/train
-datasets/imagenet2012/val
+./datasets/imagenet2012/train
+./datasets/imagenet2012/val
 ```
 
 - [ImageNet-C](https://github.com/hendrycks/robustness) (as Target)
 ```
-datasets/imagenet2012/val_c
+./datasets/imagenet2012/val_c
 ```
 
 ## Quick start
