@@ -27,7 +27,6 @@ pip install timm==0.4.9
 ```
 pip install git+https://github.com/rwightman/pytorch-image-models@more_datasets # 0.5.0
 ```
-
 ### The other libraries
 ```
 pip install -r requirements.txt
