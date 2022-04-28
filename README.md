@@ -2,6 +2,8 @@
 
 This is the official implementation of `Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment` (IJCAI-ECAI2022, Short).
 
+[IJCAI-ECAI2022 version](https://test) (main only), [arXiv version](https://test) (main and appendix)
+
 ## Installation
 
 ### Prerequisite (Hardware)
@@ -13,7 +15,7 @@ This is the official implementation of `Robustifying Vision Transformer without 
 - torch==1.9.0
 - torchvision==0.10.0
 
-### timm library
+### [timm](https://github.com/rwightman/pytorch-image-models) library
 - For ViT
 ```
 pip install timm==0.4.9
@@ -39,7 +41,7 @@ datasets/imagenet2012/train
 datasets/imagenet2012/val
 ```
 
-- ImageNet-C (as Target)
+- [ImageNet-C](https://github.com/hendrycks/robustness) (as Target)
 ```
 datasets/imagenet2012/val_c
 ```
