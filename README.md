@@ -24,7 +24,7 @@ pip install timm==0.4.9
 pip install git+https://github.com/rwightman/pytorch-image-models@more_datasets # 0.5.0
 ```
 
-### The others
+### The other libraries
 ```
 pip install -r requirements.txt
 ```
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 Download each datasets and unzip them under the following directory.
 
-- ImageNet-2012 (as Source)
+- [ImageNet-2012](https://image-net.org/index.php) (as Source)
 ```
 datasets/imagenet2012/train
 datasets/imagenet2012/val
@@ -57,10 +57,10 @@ Therefore, we can skip fine-tuning phase.
 
 ## 2nd Phase : Calculation of distribution statistics on source dataset
 ```
-python main.py 
+python main.py --calc_statistics_flag --model=${model} --loss_function=${loss_function}
 ```
 
-## 3rd Phase : Test-Time Adaptation (TTA)
+## 3rd Phase : Test-Time Adaptation (TTA) on target dataset
 ```
-python main.py 
+python main.py --tta_flag --model=${model} --loss_function=${loss_function}
 ```
