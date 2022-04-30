@@ -6,13 +6,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.distributed as dist
-import matplotlib.pyplot as plt
 import torchvision
 import subprocess
 import random
 import timm
 import datetime
-from PIL import Image
 
 def fix_seed(seed):
     # random
@@ -48,7 +46,7 @@ def save_image_sample(args, img):
     os.makedirs(args.save_image_sample_path, exist_ok=True)
     current_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     torchvision.utils.save_image(torchvision.utils.make_grid(img, normalize=True, scale_each=True), 
-                                 os.path.join(args.save_image_sample_path, current_time+'_'+args.loss_function+'.png'))
+                                 os.path.join(args.save_image_sample_path, current_time+'_'+args.method+'.png'))
     
 def softmax_entropy_tent(x):
     return -(x.softmax(-1) * x.log_softmax(-1)).sum(dim=-1) # [b,c] -> [b]

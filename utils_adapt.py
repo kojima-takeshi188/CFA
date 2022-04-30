@@ -85,16 +85,14 @@ def testdata_adapt_and_evaluation(args, model, test_loader, statistics, adapt_fl
         model = configure_model_for_resnet(model)
     
     if adapt_flag:
-        if args.loss_function == "t3a":
+        if args.method == "t3a":
             model = T3A(args, model)
         else:
             parameters = collect_params(args, model)
             optimizer = set_optimizer(args, parameters)
             model = adapt_gradient_based_model(args, model, parameters, optimizer, statistics)
-        epoch_size = args.epoch_size_test # epoch size should be 1 for online adaptation ...
     else:
-        model = without_adapt_model(args, model, statistics)
-        epoch_size = 1
+        model = without_adapt_model(args, model, statistics)        
         
     if args.dropout_on_flag: # Dropout ON
         model.train()
@@ -107,25 +105,13 @@ def testdata_adapt_and_evaluation(args, model, test_loader, statistics, adapt_fl
             if isinstance(m, nn.BatchNorm2d):
                 print(m)
     
-    if args.loss_function == "attent" and args.vis_attention_flag:
-        from utils_data import setup_data_loader
-        from utils_model import load_model_from_saved_file
-        _, model.clean_test_loader = setup_data_loader(args, args.minibatch_size_test, args.dataset)
-        model.clean_test_loader = iter(model.clean_test_loader)
-        model.clean_model = load_model_from_saved_file(args) #.to(args.device2)
-        model.clean_model.eval()
-        model.ttl_batch_num = len(test_loader)
-        model.att_cel_sum = 0
-        model.att_cel_count = 0
-    
     total = 0
-    correct_list = []        
+    correct_list = []
+    epoch_size = 1 # epoch size should be 1 for online adaptation ...
     for i in range(epoch_size):
         for nth_batch, data_test in enumerate(test_loader):
             x_test, y_test = data_test
             x_test, y_test = x_test.to(args.device), y_test.to(args.device)
-            if args.loss_function == "attent" and args.vis_attention_flag:
-                model.nth_batch = nth_batch
             logits = model(x_test)
             _, predicted = torch.max(logits, -1)
             correct = (predicted == y_test).sum().item()
@@ -253,22 +239,22 @@ class adapt_gradient_based_model(nn.Module):
         logits, h = self.model(x) # [b,c] [b,d]
         h = h_std(self.args, h)
 
-        if self.args.loss_function == "tent":
+        if self.args.method == "tent":
             loss = softmax_entropy_tent(logits) # [b] 
             loss = torch.mean(loss)
 
-        elif self.args.loss_function == "pl":
+        elif self.args.method == "pl":
             argmax_class = torch.argmax(logits, dim=1) # [b, c] -> [b]
             argmax_class = argmax_class.clone().detach().to(self.args.device)
             loss = torch.mean(celoss(logits, argmax_class))
 
-        elif self.args.loss_function == "shot-im":
+        elif self.args.method == "shot-im":
             loss1 = softmax_entropy_tent(logits)
             loss1 = torch.mean(loss1)
             loss2 = softmax_diversity_regularizer(logits)
             loss = loss1 + loss2
             
-        elif self.args.loss_function == "cfa":
+        elif self.args.method == "cfa":
             loss1 = 0
             loss2 = 0
             

@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.distributed as dist
-import matplotlib.pyplot as plt
 import torchvision
 import subprocess
 import random
@@ -82,6 +81,7 @@ def construct_model(args):
                 self.model.fc.register_forward_pre_hook(hook_fn)
             else:
                 self.classifier = model.head
+                self.model.head.register_forward_pre_hook(hook_fn)
         def forward(self, x):
             logits = self.model(x)
             h = bridging_variables

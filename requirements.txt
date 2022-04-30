@@ -1,1 +1,2 @@
-numpy
+numpy==1.19.5
+Pillow==8.3.1 # PIL library is used within torchvision. Changing PIL version affects the performance of image classification to some degree because different versions may have different quality of image manipulation (e.g.resize).

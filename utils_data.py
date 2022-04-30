@@ -29,16 +29,25 @@ def norm_mean_and_std(args):
     
 def setup_data_loader(args, minibatch_size, data, corruption_name=None, severity=None, shuffle=True):
 
-    # fix randomness to ensure reproducibility
-    # https://pytorch.org/docs/stable/notes/randomness.html
+    # With "fix_seed" function, the data order becomes the same across all the methods within a model.
+    # But if the model (network architecture) is changed, the data order is changed.
+    # The workaround is enabling "strict_fix_of_dataloader_seed_flag" as described below.
     fix_seed(args.random_seed)
-    worker_seed = torch.initial_seed() % 2**32
-    print("worker_seed : {}".format(worker_seed))
-    def seed_worker(worker_id):
-        np.random.seed(worker_seed)
-        random.seed(worker_seed)
-    g = torch.Generator()
-    g.manual_seed(worker_seed)
+    
+    # Fix randomness of data loader to strictly ensure reproducibility.
+    # https://pytorch.org/docs/stable/notes/randomness.html
+    if args.strict_fix_of_dataloader_seed_flag:
+        print("strict_fix_of_dataloader_seed")
+        worker_seed = torch.initial_seed() % 2**32
+        print("worker_seed : {}".format(worker_seed))
+        def seed_worker(worker_id):
+            np.random.seed(worker_seed)
+            random.seed(worker_seed)
+        g = torch.Generator()
+        g.manual_seed(worker_seed)
+    else:
+        seed_worker = None
+        g = None
     
     dataloader_num_workers = multiprocessing.cpu_count() #torch.cuda.device_count() * 4 #multiprocessing.cpu_count() # 5
     dataloader_num_workers = min(dataloader_num_workers, args.max_num_worker)
@@ -62,10 +71,10 @@ def setup_data_loader(args, minibatch_size, data, corruption_name=None, severity
         transforms.Normalize(mean=normalize_mean, std=normalize_std),
     ])
     
-    if data in ("imagenet-c"):
+    if data == "imagenet-c":
         transform_train = transform_without_da
         transform_test = transform_without_da
-    elif data in ("imagenet"):
+    elif data == "imagenet":
         transform_train = transform_without_da_imagenet
         transform_test = transform_without_da_imagenet
     else:

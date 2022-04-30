@@ -13,7 +13,7 @@ The paper WILL BE available at [IJCAI-ECAI2022](https://TBD) (main only) and [ar
 - Disk Space : About 300 GB
 
 #### Software
-- Python==3.8
+- Python==3.7.13
 - torch==1.9.0
 - torchvision==0.10.0
 
@@ -53,23 +53,32 @@ Download each datasets and unzip them under the following directory.
 #### (1) Argument Setting
 ```
 model={'ViT-B_16', 'ViT-L_16', 'ViT_AugReg-B_16', 'ViT_AugReg-L_16', 'resnet50', 'resnet101', 'mlpmixer_B16', 'mlpmixer_L16', 'DeiT-B', 'DeiT-S', 'Beit-B16_224', 'Beit-L16_224'}
-loss_function={'cfa', 't3a', 'shot-im', 'tent', 'pl'}
+method={'cfa', 't3a', 'shot-im', 'tent', 'pl', 'source'}
 ```
 
 #### (2) Fine-Tuning (Skip)
 In this implementation, we use models that are already fine-tuned on ImageNet-2012 dataset.
 Our method does not need to alter training phase, i.e., does not need to retrain models from scratch.
-Therefore, we can skip fine-tuning phase.
+Therefore, we can skip fine-tuning.
 
 #### (3) Calculation of distribution statistics on source dataset
 ```
-python main.py --calc_statistics_flag --model=${model} --loss_function=${loss_function}
+python main.py --calc_statistics_flag --model=${model} --method=${method}
 ```
 
 #### (4) Test-Time Adaptation (TTA) on target dataset
 ```
-python main.py --tta_flag --model=${model} --loss_function=${loss_function}
+python main.py --tta_flag --model=${model} --method=${method}
 ```
+
+#### Expected results
+
+Top-1 Error Rate on ImageNet-C with severity level=5, ViT_B16 is used as a backbone network.
+
+|                                                            | mean | gauss_noise | shot_noise | impulse_noise | defocus_blur | glass_blur | motion_blur | zoom_blur | snow | frost |  fog | brightness | contrast | elastic_trans | pixelate | jpeg |
+|------------|-----:|------------:|-----------:|--------------:|-------------:|-----------:|------------:|----------:|-----:|------:|-----:|-----------:|---------:|--------------:|---------:|-----:|
+| source     | 61.9 |        77.7 |       75.1 |          77.0 |         66.9 |       69.1 |        58.5 |      62.8 | 60.9 |  57.6 | 62.9 |       31.6 |     88.9 |          51.9 |     45.3 | 42.9 |
+| CFA       | 43.9 |        56.3 |       54.3 |          55.4 |         48.5 |       47.1 |        44.3 |      44.4 | 44.8 |  44.8 | 41.1 |       25.7 |     54.2 |          33.3 |     30.5 | 33.5 |
 
 ## Citation
 ```
