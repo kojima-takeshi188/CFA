@@ -57,9 +57,9 @@ method={'cfa', 't3a', 'shot-im', 'tent', 'pl', 'source'}
 ```
 
 #### (2) Fine-Tuning (Skip)
-In this implementation, we use models that are already fine-tuned on ImageNet-2012 dataset.
 Our method does not need to alter training phase, i.e., does not need to retrain models from scratch.
-Therefore, we can skip fine-tuning.
+Therefore, if a fine-tuned model is available, we can skip fine-tuning phase.
+In this implementation, we use models that are already fine-tuned on ImageNet-2012 dataset.
 
 #### (3) Calculation of distribution statistics on source dataset
 ```
