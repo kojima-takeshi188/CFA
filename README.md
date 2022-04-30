@@ -73,7 +73,7 @@ python main.py --tta_flag --model=${model} --method=${method}
 
 #### Expected results
 
-Top-1 Error Rate on ImageNet-C with severity level=5, ViT_B16 is used as a backbone network.
+Top-1 Error Rate on ImageNet-C with severity level=5. ViT_B16 is used as a backbone network.
 
 |                                                            | mean | gauss_noise | shot_noise | impulse_noise | defocus_blur | glass_blur | motion_blur | zoom_blur | snow | frost |  fog | brightness | contrast | elastic_trans | pixelate | jpeg |
 |------------|-----:|------------:|-----------:|--------------:|-------------:|-----------:|------------:|----------:|-----:|------:|-----:|-----------:|---------:|--------------:|---------:|-----:|
