@@ -2,7 +2,7 @@
 
 This is the official implementation of `Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment` (IJCAI-ECAI2022, Short).
 
-The paper is available at [IJCAI-ECAI2022](https://www.ijcai.org/proceedings/2022/141) (main only) and [arXiv](https://arxiv.org/abs/2206.13951) (main and appendix).
+The paper is available at [IJCAI-ECAI2022(main only)](https://www.ijcai.org/proceedings/2022/141) and [arXiv(main and appendix)](https://arxiv.org/abs/2206.13951).
 
 ## Installation
 
@@ -85,8 +85,7 @@ Top-1 Error Rate on ImageNet-C with severity level=5. ViT_B16 is used as a backb
 @inproceedings{kojima2022robustvit,
   title     = {Robustifying Vision Transformer without Retraining from Scratch by Test-Time Class-Conditional Feature Alignment},
   author    = {Kojima, Takeshi and Matsuo, Yutaka and Iwasawa, Yusuke},
-  booktitle = {Proceedings of the Thirty-First International Joint Conference on
-               Artificial Intelligence, {IJCAI-22}},
+  booktitle = {Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence, {IJCAI-22}},
   pages     = {1009--1016},
   year      = {2022},
   month     = {7},
